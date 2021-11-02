@@ -1,17 +1,17 @@
 export default class Pencil {
   constructor(durability = 50, length = 50, eraserDurability) {
-    this.durability = durability;
+    this.durability = durability
     this.maxDurability = durability;
     this.length = length;
     this.eraserDurability = eraserDurability
   }
 
   getPencilDurability() {
-    return this.durability;
+    return durability;
   }
 
   getPencilLength() {
-    return this.length;
+    return this.length
   }
 
   getEraserDurability() {
@@ -19,7 +19,7 @@ export default class Pencil {
   }
 
   updatePencilDurability(character) {
-    if (character !== ' ') {
+    if (character !== " ") {
       character === character.toLowerCase() ? this.durability -= 1 : this.durability -= 2;
     }
   }
@@ -39,7 +39,7 @@ export default class Pencil {
 
   sharpen() {
     if (this.length) {
-      this.updatePencilLength();
+      this.updatePencilLength;
       this.durability = this.maxDurability;
     }
   }
@@ -49,7 +49,7 @@ export default class Pencil {
       return;
     }
 
-    const charactersOnPaper = paper.split('');
+    var charactersOnPaper = paper.split('');
     const indexOfWord = paper.lastIndexOf(text) + text.length - 1;
 
     for (let i = 0; i < text.length; i++) {
