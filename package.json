@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register"
+    "test": "mocha --require @babel/register",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.7",
     "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "husky": "^7.0.0"
   },
   "dependencies": {}
 }
