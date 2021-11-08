@@ -7,7 +7,7 @@ export default class Pencil {
   }
 
   getPencilDurability() {
-    return durability;
+    return this.durability;
   }
 
   getPencilLength() {
@@ -39,7 +39,7 @@ export default class Pencil {
 
   sharpen() {
     if (this.length) {
-      this.updatePencilLength;
+      this.updatePencilLength();
       this.durability = this.maxDurability;
     }
   }

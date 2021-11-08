@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "chai";
 import Pencil from "../src/";
 
 describe("Pencil Durability Kata Tests", () => {
@@ -18,10 +18,14 @@ describe("Pencil Durability Kata Tests", () => {
     });
 
     it("Writes text to paper that already has text written on it", () => {
+      //GIVEN
       const pencil = new Pencil();
       const paper = "Hi, my name is Chandler ";
+      
+      //WHEN
       const result = pencil.writeOnPaper(paper, "and I love to code!");
 
+      //THEN
       expect(result).to.equal("Hi, my name is Chandler and I love to code!");
     });
 
