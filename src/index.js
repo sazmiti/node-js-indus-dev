@@ -1,9 +1,10 @@
 export default class Pencil {
+  // eslint-disable-next-line default-param-last
   constructor(durability = 50, length = 50, eraserDurability) {
-    this.durability = durability
+    this.durability = durability;
     this.maxDurability = durability;
     this.length = length;
-    this.eraserDurability = eraserDurability
+    this.eraserDurability = eraserDurability;
   }
 
   getPencilDurability() {
@@ -11,7 +12,7 @@ export default class Pencil {
   }
 
   getPencilLength() {
-    return this.length
+    return this.length;
   }
 
   getEraserDurability() {
@@ -19,8 +20,12 @@ export default class Pencil {
   }
 
   updatePencilDurability(character) {
-    if (character !== " ") {
-      character === character.toLowerCase() ? this.durability -= 1 : this.durability -= 2;
+    if (character !== ' ') {
+      if (character === character.toLowerCase()) {
+        this.durability -= 1;
+      } else {
+        this.durability -= 2;
+      }
     }
   }
 
@@ -29,12 +34,16 @@ export default class Pencil {
   }
 
   writeOnPaper(paper, textToWrite) {
-    for (let i = 0; i < textToWrite.length; i++) {
-      this.updatePencilDurability(textToWrite.charAt(i));
-      this.durability >= 0 ? paper += textToWrite.charAt(i) : paper += " ";
+    let paperText = paper;
+    for (let i = 0; i < textToWrite.length; i += 1) {
+      if (this.durability > 0) {
+        this.updatePencilDurability(textToWrite.charAt(i));
+        paperText += textToWrite.charAt(i);
+      } else {
+        paperText += ' ';
+      }
     }
-
-    return paper;
+    return paperText;
   }
 
   sharpen() {
@@ -46,38 +55,39 @@ export default class Pencil {
 
   erase(paper, text) {
     if (paper.lastIndexOf(text) < 0) {
-      return;
-    }
-
-    var charactersOnPaper = paper.split('');
-    const indexOfWord = paper.lastIndexOf(text) + text.length - 1;
-
-    for (let i = 0; i < text.length; i++) {
-      if (charactersOnPaper[indexOfWord - i] !== " ") {
-        this.eraserDurability -= 1;
-      }
-      charactersOnPaper[indexOfWord - i] = " ";
-    }
-
-    return charactersOnPaper.join('');
-  }
-
-  edit(paper, textToAdd) {
-    if (paper.lastIndexOf("  ") < 0) {
-      return;
+      return undefined;
     }
 
     const charactersOnPaper = paper.split('');
-    const indexOfBlankSpace = paper.indexOf("  ") + 1;
+    const indexOfWord = paper.lastIndexOf(text) + text.length - 1;
 
-    for (let i = 0; i < textToAdd.length; i++) {
-      if (charactersOnPaper[indexOfBlankSpace + i] === " ") {
+    for (let i = 0; i < text.length; i += 1) {
+      if (charactersOnPaper[indexOfWord - i] !== ' ') {
+        this.eraserDurability -= 1;
+      }
+      charactersOnPaper[indexOfWord - i] = ' ';
+    }
+
+    return charactersOnPaper.join('');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  edit(paper, textToAdd) {
+    if (paper.lastIndexOf('  ') < 0) {
+      return undefined;
+    }
+
+    const charactersOnPaper = paper.split('');
+    const indexOfBlankSpace = paper.indexOf('  ') + 1;
+
+    for (let i = 0; i < textToAdd.length; i += 1) {
+      if (charactersOnPaper[indexOfBlankSpace + i] === ' ') {
         charactersOnPaper[indexOfBlankSpace + i] = textToAdd.charAt(i);
       } else {
-        charactersOnPaper[indexOfBlankSpace + i] = "@";
+        charactersOnPaper[indexOfBlankSpace + i] = '@';
       }
     }
 
     return charactersOnPaper.join('');
   }
-};
+}
